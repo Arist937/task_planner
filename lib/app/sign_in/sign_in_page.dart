@@ -50,14 +50,6 @@ class SignInPage extends StatelessWidget {
     }
   }
 
-  Future<void> _signInWithFacebook(BuildContext context) async {
-    try {
-      await manager.signInWithFacebook();
-    } catch (e) {
-      _showSignInError(context, e);
-    }
-  }
-
   void _signInWithEmail(BuildContext context) {
     Navigator.of(context).push(
       platformPageRoute(
@@ -160,37 +152,6 @@ class SignInPage extends StatelessWidget {
             ],
           ),
           color: Colors.white,
-          padding: EdgeInsets.only(left: 12),
-        ),
-      ),
-      SizedBox(height: 18),
-      SizedBox(
-        height: 50,
-        child: CupertinoButton(
-          onPressed: isLoading ? null : () => _signInWithFacebook(context),
-          child: Stack(
-            alignment: Alignment.centerLeft,
-            children: <Widget>[
-              SizedBox(
-                height: 25,
-                width: 25,
-                child: Image.asset('images/facebook-logo.png'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Sign in with Facebook",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          color: Color(0xff4267B2),
           padding: EdgeInsets.only(left: 12),
         ),
       ),

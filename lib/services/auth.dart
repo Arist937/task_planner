@@ -6,7 +6,6 @@ abstract class AuthBase {
   User get currentUser;
   Stream<User> authStateChanges();
   Future<User> signInWithGoogle();
-  Future<User> signInWithFacebook();
   Future<User> signInWithEmail(String email, String password);
   Future<User> createEmailAccount(String email, String password);
   void resetPassword(String email);
@@ -47,35 +46,6 @@ class Auth implements AuthBase {
         code: 'ERROR_ABORTED_BY_USER',
         message: "Sign in aborted by user",
       );
-    }
-  }
-
-  @override
-  Future<User> signInWithFacebook() async {
-    final fb = FacebookLogin();
-    final response = await fb.logIn(permissions: [
-      FacebookPermission.email,
-      FacebookPermission.publicProfile,
-    ]);
-
-    switch (response.status) {
-      case FacebookLoginStatus.success:
-        final accessToken = response.accessToken;
-        final userCredential = await _firebaseAuth.signInWithCredential(
-            FacebookAuthProvider.credential(accessToken.token));
-        return userCredential.user;
-      case FacebookLoginStatus.cancel:
-        throw FirebaseAuthException(
-          code: "ERROR_ABORTED_BY_USER",
-          message: "Sign in aborted by user",
-        );
-      case FacebookLoginStatus.error:
-        throw FirebaseAuthException(
-          code: "ERROR_MISSING_FACEBOOK_ID_TOKEN",
-          message: response.error.developerMessage,
-        );
-      default:
-        throw UnimplementedError();
     }
   }
 
