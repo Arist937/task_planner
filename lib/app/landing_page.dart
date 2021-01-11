@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:task_planner/app/home/home_page.dart';
 import 'package:task_planner/app/sign_in/sign_in_page.dart';
 import 'package:task_planner/services/auth.dart';
+import 'package:task_planner/services/database.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -19,7 +20,10 @@ class LandingPage extends StatelessWidget {
           if (user == null) {
             return SignInPage.create(context);
           } else {
-            return HomePage();
+            return Provider<Database>(
+              create: (_) => FirestoreDatabase(uid: user.uid),
+              child: HomePage(),
+            );
           }
         } else {
           return PlatformScaffold(
