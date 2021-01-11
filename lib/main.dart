@@ -20,19 +20,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<AuthBase>(
       create: (context) => Auth(),
-      child: PlatformApp(
-        title: 'Task Planner',
-        material: (context, __) => MaterialAppData(
-          theme: ThemeData(
-            primarySwatch: Colors.white,
+      child: Provider<AuthBase>(
+        create: (context) => Auth(),
+        child: PlatformApp(
+          title: 'Task Planner',
+          material: (context, __) => MaterialAppData(
+            theme: ThemeData(
+              primarySwatch: Colors.white,
+            ),
           ),
-        ),
-        cupertino: (context, __) => CupertinoAppData(
-          theme: CupertinoThemeData(
-            primaryColor: Colors.white,
+          cupertino: (context, __) => CupertinoAppData(
+            theme: CupertinoThemeData(
+              primaryColor: Colors.red[700],
+            ),
           ),
+          home: LandingPage(),
         ),
-        home: LandingPage(),
       ),
     );
   }

@@ -70,9 +70,8 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = Provider.of<ValueNotifier<bool>>(context);
     return PlatformScaffold(
-      body: _buildContent(context, isLoading.value),
+      body: _buildContent(context, manager.isLoading.value),
       backgroundColor: Colors.grey[200],
     );
   }
@@ -85,25 +84,25 @@ class SignInPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 50, child: _buildHeader(isLoading)),
-          SizedBox(height: 48),
+          SizedBox(height: 50),
           ShowUpList(
             animationDuration: Duration(milliseconds: 800),
             curve: Curves.bounceIn,
             direction: Direction.vertical,
             offset: 0.5,
-            children: _buildChildren(context),
+            children: _buildChildren(context, isLoading),
           ),
         ],
       ),
     );
   }
 
-  List<Widget> _buildChildren(BuildContext context) {
+  List<Widget> _buildChildren(BuildContext context, bool isLoading) {
     return <Widget>[
       SizedBox(
-        height: 45,
+        height: 50,
         child: OutlineButton(
-          onPressed: () => _signInWithEmail(context),
+          onPressed: isLoading ? null : () => _signInWithEmail(context),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: <Widget>[
@@ -135,9 +134,9 @@ class SignInPage extends StatelessWidget {
       ),
       SizedBox(height: 18),
       SizedBox(
-        height: 45,
+        height: 50,
         child: CupertinoButton(
-          onPressed: () => null,
+          onPressed: isLoading ? null : () => _signInWithGoogle(context),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: <Widget>[
@@ -166,9 +165,9 @@ class SignInPage extends StatelessWidget {
       ),
       SizedBox(height: 18),
       SizedBox(
-        height: 45,
+        height: 50,
         child: CupertinoButton(
-          onPressed: () => null,
+          onPressed: isLoading ? null : () => _signInWithFacebook(context),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: <Widget>[
@@ -195,7 +194,7 @@ class SignInPage extends StatelessWidget {
           padding: EdgeInsets.only(left: 12),
         ),
       ),
-      SizedBox(height: 40),
+      SizedBox(height: 50),
       PlatformText(
         "Plan your day.",
         textAlign: TextAlign.center,
