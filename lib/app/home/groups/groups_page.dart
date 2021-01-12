@@ -37,11 +37,12 @@ class GroupsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: Text("Tasks"),
+        title: Text("Groups"),
         trailingActions: <Widget>[
           PlatformIconButton(
             icon: Icon(PlatformIcons(context).addCircled),
             onPressed: _addTask,
+            padding: EdgeInsets.zero,
           ),
         ],
       ),

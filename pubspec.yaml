@@ -34,7 +34,8 @@ dependencies:
   intl: 0.16.1
   # Animations
   show_up_animation: 1.0.4
-  animated_typing: 0.1.0 
+  animated_text_kit: 3.1.0
+  animated_bottom_navigation_bar: 0.2.1
 
 dev_dependencies:
   flutter_test:

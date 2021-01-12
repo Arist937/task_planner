@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 
 class Task {
@@ -9,10 +11,11 @@ class Task {
   final String id;
   final String name;
 
-  factory Task.fromMap(Map<String, String> data, String documentId) {
+  factory Task.fromMap(Map<String, dynamic> data, String documentId) {
     if (data == null) {
       return null;
     }
+
     final String name = data['name'];
 
     return Task(

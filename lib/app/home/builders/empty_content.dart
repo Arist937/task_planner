@@ -16,9 +16,12 @@ class EmptyContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          PlatformText(
-            title,
-            style: TextStyle(fontSize: 32.0, color: Colors.black54),
+          Align(
+            alignment: Alignment.center,
+            child: PlatformText(
+              title,
+              style: TextStyle(fontSize: 32.0, color: Colors.black54),
+            ),
           ),
           PlatformText(
             message,

@@ -33,7 +33,7 @@ class _EditTaskPageState extends State<EditTaskPage> {
     await widget.database.setTask(
       Task(
         name: widget.model.taskName,
-        id: "Job_abc",
+        id: widget.model.id ?? documentIdFromCurrentDate(),
       ),
     );
     Navigator.of(context).pop();

@@ -1,4 +1,4 @@
-import 'package:animated_typing/animated_typing.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -173,13 +173,14 @@ class SignInPage extends StatelessWidget {
       );
     } else {
       return Center(
-        child: AnimatedTyping(
-          text: "Task Planner.",
-          duration: Duration(milliseconds: 1000),
-          style: TextStyle(
+        child: TypewriterAnimatedTextKit(
+          text: ["Task Planner."],
+          textStyle: TextStyle(
             fontSize: 32.0,
-            fontWeight: FontWeight.w600,
+            color: Colors.black,
           ),
+          speed: const Duration(milliseconds: 77),
+          isRepeatingAnimation: false,
         ),
       );
     }
